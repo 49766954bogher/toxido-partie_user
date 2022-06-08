@@ -13,13 +13,14 @@ void main() async {
   runApp(
     MyApp(
       child: MaterialApp(
-        title: "Chauffeur",
+        title: "Taxi servuce",
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
         home: AnimatedSplashScreen(
-            backgroundColor: Colors.black54,
-            splash: 'images/driver.jpg',
+            backgroundColor: Colors.yellow,
+            splash: 'images/logo.png',
+            splashIconSize: 200,
             nextScreen: FirebaseAuth.instance.currentUser == null
                 ? const Connection()
                 : const HomePage()),
@@ -33,7 +34,7 @@ void main() async {
 class MyApp extends StatefulWidget {
   final Widget? child;
 
-  MyApp({this.child});
+  const MyApp({this.child});
 // La methode qui va etr appeler dans n'importe quel place pour redemarer lapp
   static void restartApp(BuildContext context) {
     context.findAncestorStateOfType<_MyAppState>()!.restartApp();

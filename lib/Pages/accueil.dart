@@ -2,6 +2,7 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
+import 'package:uber_clone/Chercher/chercher.dart';
 import 'package:uber_clone/Connection/connection.dart';
 import 'package:uber_clone/Pages/note.dart';
 import 'package:uber_clone/Pages/paiement.dart';
@@ -96,83 +97,149 @@ class _HomePageState extends State<HomePage> {
             markers: Mymarkers,
           ),
           Positioned(
-            top: 50.0,
-            right: 15.0,
-            left: 15.0,
+            left: 0.0,
+            right: 0.0,
+            bottom: 0.0,
             child: Container(
-              height: 50.0,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(3.0),
-                color: Colors.white,
-                boxShadow: const [
-                  BoxShadow(
-                      color: Colors.grey,
-                      offset: Offset(1.0, 5.0),
-                      blurRadius: 10,
-                      spreadRadius: 3)
-                ],
-              ),
-              child: TextField(
-                cursorColor: Colors.black,
-                controller: depart,
-                decoration: InputDecoration(
-                  icon: Container(
-                    margin: const EdgeInsets.only(left: 20, top: 5),
-                    width: 10,
-                    height: 10,
-                    child: const Icon(
-                      Icons.location_on,
+              height: 320.0,
+              decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(18.0),
+                      topRight: Radius.circular(18.0)),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black54,
+                      blurRadius: 16.0,
+                      spreadRadius: 0.5,
+                      offset: Offset(0.7, 0.7),
+                    ),
+                  ]),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(
+                    horizontal: 24.0, vertical: 18.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(
+                      height: 10.0,
+                    ),
+                    const Text(
+                      "Bienvenue...",
+                      style: TextStyle(fontSize: 15.0),
+                    ),
+                    const Text(
+                      "Ou vouler-vous aller?",
+                      style: TextStyle(
+                          fontSize: 20.0, fontWeight: FontWeight.bold),
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    Container(
+                      decoration: BoxDecoration(
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(5.0),
+                          boxShadow: [
+                            BoxShadow(
+                              color: Colors.black54,
+                              blurRadius: 6.0,
+                              spreadRadius: 0.5,
+                              offset: Offset(0.7, 0.7),
+                            ),
+                          ]),
+                      child: Padding(
+                        padding: const EdgeInsets.all(12.0),
+                        child: Row(
+                          children: const [
+                            Icon(
+                              Icons.search,
+                              color: Colors.blue,
+                            ),
+                            SizedBox(
+                              width: 16.0,
+                            ),
+                            Text(
+                              "Chercher votre lieu",
+                              style: TextStyle(
+                                  fontSize: 15.0, color: Colors.black),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
+                    const SizedBox(
+                      height: 20.0,
+                    ),
+                    Row(
+                      children: [
+                        const Icon(
+                          Icons.home,
+                          color: Colors.grey,
+                        ),
+                        SizedBox(
+                          width: 12.0,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Maison ",
+                            ),
+                            SizedBox(
+                              height: 4.0,
+                            ),
+                            Text(
+                              "Ajouter adresse de votre maison",
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                    SizedBox(
+                      height: 10.0,
+                    ),
+                    Divider(
                       color: Colors.blue,
                     ),
-                  ),
-                  hintText: "depart",
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.only(left: 15.0, top: 16.0),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.work,
+                          color: Colors.grey,
+                        ),
+                        SizedBox(
+                          width: 12.0,
+                        ),
+                        Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              "Bureau",
+                            ),
+                            SizedBox(
+                              height: 4.0,
+                            ),
+                            Text(
+                              "Lieu de travail",
+                              style: TextStyle(
+                                  color: Colors.grey,
+                                  fontSize: 16.0,
+                                  fontWeight: FontWeight.bold),
+                            ),
+                          ],
+                        )
+                      ],
+                    ),
+                  ],
                 ),
               ),
             ),
-          ),
-          Positioned(
-            top: 105.0,
-            right: 15.0,
-            left: 15.0,
-            child: Container(
-              height: 50.0,
-              width: double.infinity,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(3.0),
-                color: Colors.white,
-                boxShadow: const [
-                  BoxShadow(
-                      color: Colors.grey,
-                      offset: Offset(1.0, 5.0),
-                      blurRadius: 10,
-                      spreadRadius: 3)
-                ],
-              ),
-              child: TextField(
-                cursorColor: Colors.black,
-                controller: destination,
-                textInputAction: TextInputAction.go,
-                onSubmitted: (value) {},
-                decoration: InputDecoration(
-                  icon: Container(
-                    margin: const EdgeInsets.only(left: 20, top: 5),
-                    width: 10,
-                    height: 10,
-                    child: const Icon(
-                      Icons.local_taxi,
-                      color: Colors.blue,
-                    ),
-                  ),
-                  hintText: "destination?",
-                  border: InputBorder.none,
-                  contentPadding: const EdgeInsets.only(left: 15.0, top: 16.0),
-                ),
-              ),
-            ),
-          ),
+          )
         ],
       ),
       drawer: const NavigationDrawer(),
@@ -212,6 +279,14 @@ class NavigationDrawer extends StatelessWidget {
                       builder: (context) => const HomePage()));
                 }),
             ListTile(
+                leading: const Icon(Icons.search),
+                title: const Text("Course "),
+                onTap: () {
+                  //Navigator.pop(context);
+                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                      builder: (context) => const ChercherPage()));
+                }),
+            ListTile(
                 leading: const Icon(Icons.credit_card_outlined),
                 title: const Text("Paiement"),
                 onTap: () {
@@ -249,7 +324,7 @@ class NavigationDrawer extends StatelessWidget {
               },
             ),
             ListTile(
-              leading: const Icon(Icons.history_toggle_off_rounded),
+              leading: const Icon(Icons.history),
               title: const Text("Historique"),
               onTap: () {
                 //Navigator.pop(context);

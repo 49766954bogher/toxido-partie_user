@@ -1,11 +1,14 @@
 import 'dart:async';
 
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:uber_clone/Authrntification/auth.dart';
 import 'package:uber_clone/Connection/connection.dart';
 // ignore: unused_import
 import 'package:uber_clone/EcranPrincipal/main_screen.dart';
 import 'package:uber_clone/Global/global.dart';
+
+import '../Pages/accueil.dart';
 
 class MySplashScreen extends StatefulWidget {
   const MySplashScreen({Key? key}) : super(key: key);
@@ -19,6 +22,7 @@ class _MySplashScreenState extends State<MySplashScreen> {
     Timer(const Duration(seconds: 3), () async {
       if (fAuth.currentUser != null) {
         currentUser = fAuth.currentUser;
+
         Navigator.push(
             context, MaterialPageRoute(builder: (c) => const MainScreen()));
       } else {
@@ -42,17 +46,20 @@ class _MySplashScreenState extends State<MySplashScreen> {
   Widget build(BuildContext context) {
     return Material(
       child: Container(
-        color: Colors.black,
+        color: Colors.yellow,
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Image.asset("images/driver.jpg"),
+              Image.asset(
+                'images/logo.png',
+              ),
+              const SizedBox(height: 8.0),
               const Text(
-                "taxido app",
+                "Taxi Service",
                 style: TextStyle(
                     fontSize: 30,
-                    color: Colors.black,
+                    color: Colors.black54,
                     fontStyle: FontStyle.italic,
                     fontWeight: FontWeight.bold),
               ),
