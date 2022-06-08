@@ -148,17 +148,17 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ]),
                         child: Padding(
-                          padding: const EdgeInsets.all(12.0),
+                          padding: EdgeInsets.all(12.0),
                           child: Row(
                             children: [
-                              const Icon(
+                              Icon(
                                 Icons.search,
                                 color: Colors.blueAccent,
                               ),
-                              const SizedBox(
+                              SizedBox(
                                 width: 16.0,
                               ),
-                              const Text(
+                              Text(
                                 "Chercher votre lieu",
                                 style: TextStyle(
                                     fontSize: 15.0, color: Colors.black),

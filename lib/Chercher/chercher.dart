@@ -34,7 +34,7 @@ class _ChercherPageState extends State<ChercherPage> {
                   height: 5.0,
                 ),
                 Stack(
-                  children: [
+                  children: const [
                     Icon(
                       Icons.arrow_back,
                       color: Colors.white,
