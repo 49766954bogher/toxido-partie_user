@@ -13,7 +13,8 @@ class _ChercherPageState extends State<ChercherPage> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 215.0,
+      height: MediaQuery.of(context).size.height,
+      width: MediaQuery.of(context).size.width,
       decoration: const BoxDecoration(color: Colors.white, boxShadow: [
         BoxShadow(
           color: Colors.black,
@@ -32,9 +33,10 @@ class _ChercherPageState extends State<ChercherPage> {
           Stack(
             children: [
               GestureDetector(
-                onTap: () => Navigator.pop(
-                    context), //Navigator.of(context).push(MaterialPageRoute(
-                //builder: (BuildContext context) => const ChercherPage())),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext context) => const ChercherPage()));
+                },
                 child: Icon(
                   Icons.arrow_back,
                   color: Colors.white,

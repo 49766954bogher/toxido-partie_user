@@ -61,13 +61,6 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Accueil",
-          style: TextStyle(fontSize: 12),
-        ),
-        backgroundColor: Colors.black54,
-      ),
       body: Stack(
         children: <Widget>[
           GoogleMap(
@@ -101,7 +94,7 @@ class _HomePageState extends State<HomePage> {
             right: 0.0,
             bottom: 0.0,
             child: Container(
-              height: 320.0,
+              height: 350.0,
               decoration: const BoxDecoration(
                   color: Colors.white,
                   borderRadius: BorderRadius.only(
@@ -140,7 +133,7 @@ class _HomePageState extends State<HomePage> {
                       decoration: BoxDecoration(
                           color: Colors.white,
                           borderRadius: BorderRadius.circular(5.0),
-                          boxShadow: [
+                          boxShadow: const [
                             BoxShadow(
                               color: Colors.black54,
                               blurRadius: 6.0,
@@ -177,12 +170,12 @@ class _HomePageState extends State<HomePage> {
                           Icons.home,
                           color: Colors.grey,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 12.0,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: const [
                             Text(
                               "Maison ",
                             ),
@@ -190,7 +183,7 @@ class _HomePageState extends State<HomePage> {
                               height: 4.0,
                             ),
                             Text(
-                              "Ajouter adresse de votre maison",
+                              "Adresse de la  maison",
                               style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 16.0,
@@ -200,24 +193,24 @@ class _HomePageState extends State<HomePage> {
                         )
                       ],
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10.0,
                     ),
-                    Divider(
-                      color: Colors.blue,
+                    const Divider(
+                      color: Colors.black45,
                     ),
                     Row(
                       children: [
-                        Icon(
+                        const Icon(
                           Icons.work,
                           color: Colors.grey,
                         ),
-                        SizedBox(
+                        const SizedBox(
                           width: 12.0,
                         ),
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
+                          children: const [
                             Text(
                               "Bureau",
                             ),
@@ -277,14 +270,6 @@ class NavigationDrawer extends StatelessWidget {
                   //Navigator.pop(context);
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
                       builder: (context) => const HomePage()));
-                }),
-            ListTile(
-                leading: const Icon(Icons.search),
-                title: const Text("Course "),
-                onTap: () {
-                  //Navigator.pop(context);
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const ChercherPage()));
                 }),
             ListTile(
                 leading: const Icon(Icons.credit_card_outlined),
