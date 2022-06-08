@@ -122,42 +122,49 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(fontSize: 15.0),
                     ),
                     const Text(
-                      "Ou vouler-vous aller?",
+                      "Ou vouder-vous aller?",
                       style: TextStyle(
                           fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
                       height: 20.0,
                     ),
-                    Container(
-                      decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(5.0),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Colors.black54,
-                              blurRadius: 6.0,
-                              spreadRadius: 0.5,
-                              offset: Offset(0.7, 0.7),
-                            ),
-                          ]),
-                      child: Padding(
-                        padding: const EdgeInsets.all(12.0),
-                        child: Row(
-                          children: const [
-                            Icon(
-                              Icons.search,
-                              color: Colors.blue,
-                            ),
-                            SizedBox(
-                              width: 16.0,
-                            ),
-                            Text(
-                              "Chercher votre lieu",
-                              style: TextStyle(
-                                  fontSize: 15.0, color: Colors.black),
-                            ),
-                          ],
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.of(context).push(MaterialPageRoute(
+                            builder: (BuildContext context) =>
+                                const ChercherPage()));
+                      },
+                      child: Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(5.0),
+                            boxShadow: const [
+                              BoxShadow(
+                                color: Colors.black54,
+                                blurRadius: 6.0,
+                                spreadRadius: 0.5,
+                                offset: Offset(0.7, 0.7),
+                              ),
+                            ]),
+                        child: Padding(
+                          padding: const EdgeInsets.all(12.0),
+                          child: Row(
+                            children: [
+                              const Icon(
+                                Icons.search,
+                                color: Colors.blueAccent,
+                              ),
+                              const SizedBox(
+                                width: 16.0,
+                              ),
+                              const Text(
+                                "Chercher votre lieu",
+                                style: TextStyle(
+                                    fontSize: 15.0, color: Colors.black),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     ),
@@ -168,7 +175,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         const Icon(
                           Icons.home,
-                          color: Colors.grey,
+                          color: Colors.blueAccent,
                         ),
                         const SizedBox(
                           width: 12.0,
@@ -183,7 +190,7 @@ class _HomePageState extends State<HomePage> {
                               height: 4.0,
                             ),
                             Text(
-                              "Adresse de la  maison",
+                              "Dar El Barké Ntt-Mrt",
                               style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 16.0,
@@ -203,7 +210,7 @@ class _HomePageState extends State<HomePage> {
                       children: [
                         const Icon(
                           Icons.work,
-                          color: Colors.grey,
+                          color: Colors.blueAccent,
                         ),
                         const SizedBox(
                           width: 12.0,
@@ -218,7 +225,7 @@ class _HomePageState extends State<HomePage> {
                               height: 4.0,
                             ),
                             Text(
-                              "Lieu de travail",
+                              "ISCAE",
                               style: TextStyle(
                                   color: Colors.grey,
                                   fontSize: 16.0,

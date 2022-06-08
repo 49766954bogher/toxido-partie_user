@@ -13,12 +13,12 @@ void main() async {
   runApp(
     MyApp(
       child: MaterialApp(
-        title: "Taxi servuce",
+        title: "Taxi servce",
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
         home: AnimatedSplashScreen(
-            backgroundColor: Colors.yellow,
+            backgroundColor: Colors.white,
             splash: 'images/logo.png',
             splashIconSize: 200,
             nextScreen: FirebaseAuth.instance.currentUser == null
