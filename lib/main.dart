@@ -13,7 +13,7 @@ void main() async {
   runApp(
     MyApp(
       child: MaterialApp(
-        title: "Taxi servce",
+        title: "Taxi service version utilisateur",
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
@@ -41,7 +41,7 @@ class MyApp extends StatefulWidget {
   }
 
   @override
-  _MyAppState createState() => _MyAppState();
+  createState() => _MyAppState();
 }
 
 class _MyAppState extends State<MyApp> {

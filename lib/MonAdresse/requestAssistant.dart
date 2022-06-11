@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:http/http.dart' as http;
 
 class RequestAssistant {
-  static Future<String> getRequest(Uri s) async {
+  static Future<String> getRequests(Uri s) async {
     http.Response response = await http.get(s);
     try {
       if (response.statusCode == 200) {

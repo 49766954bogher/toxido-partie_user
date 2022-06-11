@@ -90,6 +90,21 @@ class _HomePageState extends State<HomePage> {
             markers: Mymarkers,
           ),
           Positioned(
+            top: 40,
+            left: 40,
+            child: FloatingActionButton(
+              onPressed: () {
+                const NavigationDrawer();
+              },
+              tooltip: "Menu",
+              backgroundColor: Colors.black54,
+              child: const Icon(
+                Icons.menu,
+                color: Colors.white,
+              ),
+            ),
+          ),
+          Positioned(
             left: 0.0,
             right: 0.0,
             bottom: 0.0,
@@ -148,9 +163,9 @@ class _HomePageState extends State<HomePage> {
                               ),
                             ]),
                         child: Padding(
-                          padding: EdgeInsets.all(12.0),
+                          padding: const EdgeInsets.all(12.0),
                           child: Row(
-                            children: [
+                            children: const [
                               Icon(
                                 Icons.search,
                                 color: Colors.blueAccent,
@@ -242,7 +257,6 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
-      drawer: const NavigationDrawer(),
     );
   }
 }

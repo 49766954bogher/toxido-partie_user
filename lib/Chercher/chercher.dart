@@ -16,7 +16,7 @@ class _ChercherPageState extends State<ChercherPage> {
       body: Column(
         children: [
           Container(
-            height: 300,
+            height: 340,
             width: double.infinity,
             decoration: const BoxDecoration(color: Colors.white, boxShadow: [
               BoxShadow(
@@ -125,4 +125,17 @@ class _ChercherPageState extends State<ChercherPage> {
       ),
     );
   }
+  /*
+   void getPlace(String placesPosition) async {
+      if (placesPosition.length > 1) {
+        String stringUrl =
+            " https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$placesPosition&key=AIzaSyDNxhlq0YoADTxZ3Be_iMtd_3zWUPe_mpo&sessiontoken=1234567890&components=contry:mr";
+
+        var res = await RequestAssistant.getRequests(s);
+        if (res == "failed") {
+          return;
+        }
+      }
+    }
+  */
 }
