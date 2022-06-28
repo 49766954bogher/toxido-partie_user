@@ -1,24 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:rating_dialog/rating_dialog.dart';
-import 'package:rating_dialog/rating_dialog.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
-
-class NotePage extends StatefulWidget {
-  const NotePage({Key? key}) : super(key: key);
-
-  @override
-  State<NotePage> createState() => _NotePageState();
-}
-
-class _NotePageState extends State<NotePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      body: Center(child: Text('noter votre voyage ici')),
-    );
-  }
-}
 
 class _ExampleScreenState extends State<ExampleScreen> {
   // show the rating dialog

@@ -13,6 +13,7 @@ import 'dart:async';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../Global/global.dart';
+import 'obtenirchauffeur.dart';
 import 'history.dart';
 
 class HomePage extends StatefulWidget {
@@ -32,7 +33,9 @@ class _HomePageState extends State<HomePage> {
 
   final Completer<GoogleMapController> _controllerGoogleMaps = Completer();
   GoogleMapController? controllerChauffeur;
+
   GlobalKey<ScaffoldState> scafoldkey = GlobalKey<ScaffoldState>();
+
   Position? currentPosition;
   var geolocalor = Geolocator();
 
@@ -61,12 +64,13 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: scafoldkey,
       body: Stack(
         children: <Widget>[
           GoogleMap(
             mapType: MapType.normal,
             compassEnabled: true,
-            myLocationButtonEnabled: true,
+            myLocationButtonEnabled: false,
             zoomControlsEnabled: true,
             zoomGesturesEnabled: true,
             //onCameraMove: _onCameraMove,
@@ -83,24 +87,37 @@ class _HomePageState extends State<HomePage> {
                   position: const LatLng(18.0735411, -15.9582337),
                 ));
               });
-
-              getPositionLocation();
             },
             initialCameraPosition: _kGooglePlex,
             markers: Mymarkers,
           ),
           Positioned(
-            top: 40,
-            left: 40,
+            top: 35,
+            left: 20,
             child: FloatingActionButton(
               onPressed: () {
-                const NavigationDrawer();
+                scafoldkey.currentState?.openDrawer();
               },
               tooltip: "Menu",
-              backgroundColor: Colors.black54,
+              backgroundColor: Colors.white,
               child: const Icon(
                 Icons.menu,
-                color: Colors.white,
+                color: Colors.black,
+              ),
+            ),
+          ),
+          Positioned(
+            top: 95,
+            left: 20,
+            child: FloatingActionButton(
+              onPressed: () {
+                getPositionLocation();
+              },
+              tooltip: "Location",
+              backgroundColor: Colors.white,
+              child: const Icon(
+                Icons.location_on_outlined,
+                color: Colors.black,
               ),
             ),
           ),
@@ -144,7 +161,7 @@ class _HomePageState extends State<HomePage> {
                     const SizedBox(
                       height: 20.0,
                     ),
-                    GestureDetector(
+                    InkWell(
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (BuildContext context) =>
@@ -257,6 +274,7 @@ class _HomePageState extends State<HomePage> {
           )
         ],
       ),
+      drawer: const NavigationDrawer(),
     );
   }
 }
@@ -304,9 +322,15 @@ class NavigationDrawer extends StatelessWidget {
                 leading: const Icon(Icons.star),
                 title: const Text("Note"),
                 onTap: () {
-                  //Navigator.pop(context);
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
+                  Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const NotePage()));
+                }),
+            ListTile(
+                leading: const Icon(Icons.star),
+                title: const Text("choix "),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (context) => const ontenirChauffuer()));
                 }),
             ListTile(
                 leading: const Icon(Icons.person),

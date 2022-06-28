@@ -17,17 +17,8 @@ class _PaiementPageState extends State<PaiementPage> {
           "Total des paiement",
           style: TextStyle(fontSize: 12),
         ),
-        backgroundColor: Colors.black54,
-        leading: IconButton(
-          icon: const Icon(
-            Icons.arrow_back,
-            color: Colors.white,
-          ),
-          onPressed: () {
-            Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => const HomePage()));
-          },
-        ),
+        backgroundColor: Colors.white,
+        leading: BackButton(color: Colors.black),
       ),
       body: const Center(
         child: Text("nombre des voyages "),

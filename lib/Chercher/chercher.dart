@@ -1,4 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
+import 'package:google_place/google_place.dart';
+
+import '../Maps/maps.dart';
+import '../Pages/accueil.dart';
 
 class ChercherPage extends StatefulWidget {
   const ChercherPage({Key? key}) : super(key: key);
@@ -8,134 +14,185 @@ class ChercherPage extends StatefulWidget {
 }
 
 class _ChercherPageState extends State<ChercherPage> {
-  TextEditingController depart = TextEditingController();
-  TextEditingController destination = TextEditingController();
+  final TextEditingController depart = TextEditingController();
+  final TextEditingController destination = TextEditingController();
+
+  DetailsResult? startPosition;
+  DetailsResult? endPosition;
+
+  late FocusNode startFocusNode;
+  late FocusNode endFocusNode;
+
+  late GooglePlace googlePlace;
+  List<AutocompletePrediction> predictions = [];
+  Timer? _debounce;
+
+  @override
+  void initState() {
+    super.initState();
+    String apiKey = 'AIzaSyDNxhlq0YoADTxZ3Be_iMtd_3zWUPe_mpo';
+    googlePlace = GooglePlace(apiKey);
+
+    startFocusNode = FocusNode();
+    endFocusNode = FocusNode();
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    startFocusNode.dispose();
+    endFocusNode.dispose();
+  }
+
+  void autoCompleteSearch(String value) async {
+    var result = await googlePlace.autocomplete.get(value);
+    if (result != null && result.predictions != null && mounted) {
+      print(result.predictions!.first.description);
+      setState(() async {
+        predictions = result.predictions!;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: [
-          Container(
-            height: 340,
-            width: double.infinity,
-            decoration: const BoxDecoration(color: Colors.white, boxShadow: [
-              BoxShadow(
-                color: Colors.black,
-                blurRadius: 6.0,
-                spreadRadius: 0.5,
-                offset: Offset(0.7, 0.7),
-              ),
-            ]),
-            child: Padding(
-              padding: const EdgeInsets.only(
-                  left: 25, top: 40, right: 25, bottom: 20),
-              child: Column(children: [
-                const SizedBox(
-                  height: 5.0,
-                ),
-                Stack(
-                  children: const [
-                    Icon(
-                      Icons.arrow_back,
-                      color: Colors.white,
-                    ),
-                    Center(
-                      child: Text(
-                        "Chercher votre localition",
-                        style: TextStyle(
-                            fontSize: 20, fontWeight: FontWeight.bold),
-                      ),
-                    )
-                  ],
-                ),
-                const SizedBox(height: 16),
-                Row(
-                  children: [
-                    Image.asset(
-                      "images/pickicon.png",
-                      height: 16,
-                      width: 16,
-                    ),
-                    const SizedBox(height: 18),
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey[400],
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(3),
-                          child: TextField(
-                            keyboardType: TextInputType.text,
-                            controller: depart,
-                            decoration: InputDecoration(
-                              hintText: "Ou etes vous ?",
-                              fillColor: Colors.grey[400],
-                              filled: true,
-                              border: InputBorder.none,
-                              isDense: true,
-                              contentPadding: const EdgeInsets.only(
-                                  left: 11.0, top: 8.0, bottom: 8.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                const SizedBox(height: 10),
-                Row(
-                  children: [
-                    Image.asset(
-                      "images/desticon.png",
-                      height: 16,
-                      width: 16,
-                    ),
-                    const SizedBox(height: 18),
-                    Expanded(
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.grey[400],
-                          borderRadius: BorderRadius.circular(5.0),
-                        ),
-                        child: Padding(
-                          padding: const EdgeInsets.all(3),
-                          child: TextField(
-                            keyboardType: TextInputType.text,
-                            controller: destination,
-                            decoration: InputDecoration(
-                              hintText: "Ou voudrez vous aller?",
-                              fillColor: Colors.grey[400],
-                              filled: true,
-                              border: InputBorder.none,
-                              isDense: true,
-                              contentPadding: const EdgeInsets.only(
-                                  left: 11.0, top: 8.0, bottom: 8.0),
-                            ),
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ]),
+      appBar: AppBar(
+        backgroundColor: Colors.white,
+        leading: const BackButton(color: Colors.black),
+        elevation: 0,
+      ),
+      body: Padding(
+        padding: const EdgeInsets.all(8.0),
+        child: Column(
+          children: [
+            TextField(
+              controller: depart,
+              autofocus: false,
+              focusNode: startFocusNode,
+              style: const TextStyle(fontSize: 24),
+              decoration: InputDecoration(
+                  hintText: ' Point de depart ',
+                  hintStyle: const TextStyle(
+                      fontWeight: FontWeight.w500, fontSize: 15),
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  border: InputBorder.none,
+                  suffixIcon: depart.text.isNotEmpty
+                      ? IconButton(
+                          onPressed: () {
+                            setState(() {
+                              predictions = [];
+                              depart.clear();
+                            });
+                          },
+                          icon: const Icon(Icons.clear_outlined),
+                        )
+                      : null),
+              onChanged: (value) {
+                if (_debounce?.isActive ?? false) _debounce!.cancel();
+                _debounce = Timer(const Duration(milliseconds: 1000), () {
+                  if (value.isNotEmpty) {
+                    //places api
+                    // autoCompleteSearch(value);
+                  } else {
+                    //clear out the results
+                    setState(() {
+                      predictions = [];
+                      startPosition = null;
+                    });
+                  }
+                });
+              },
             ),
-          ),
-        ],
+            const SizedBox(height: 10),
+            TextField(
+              controller: destination,
+              autofocus: false,
+              focusNode: endFocusNode,
+              // enabled: depart.text.isNotEmpty && startPosition != null,
+              style: const TextStyle(fontSize: 24),
+              decoration: InputDecoration(
+                  hintText: 'Point d\'arrivée',
+                  hintStyle: const TextStyle(
+                      fontWeight: FontWeight.w500, fontSize: 15),
+                  filled: true,
+                  fillColor: Colors.grey[200],
+                  border: InputBorder.none,
+                  suffixIcon: destination.text.isNotEmpty
+                      ? IconButton(
+                          onPressed: () {
+                            setState(() {
+                              predictions = [];
+                              destination.clear();
+                            });
+                          },
+                          icon: const Icon(Icons.clear_outlined),
+                        )
+                      : null),
+              onChanged: (value) {
+                if (_debounce?.isActive ?? false) _debounce!.cancel();
+                if (_debounce?.isActive ?? false) _debounce!.cancel();
+                _debounce = Timer(const Duration(milliseconds: 1000), () {
+                  if (value.isNotEmpty) {
+                    //places api
+                    //autoCompleteSearch(value);
+                  } else {
+                    //clear out the results
+                    setState(() {
+                      predictions = [];
+                      endPosition = null;
+                    });
+                  }
+                });
+              },
+            ),
+            ListView.builder(
+                shrinkWrap: true,
+                itemCount: predictions.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    leading: const CircleAvatar(
+                      child: Icon(
+                        Icons.pin_drop,
+                        color: Colors.white,
+                      ),
+                    ),
+                    title: Text(
+                      predictions[index].description.toString(),
+                    ),
+                    onTap: () async {
+                      final placeId = predictions[index].placeId!;
+                      final details = await googlePlace.details.get(placeId);
+                      if (details != null &&
+                          details.result != null &&
+                          mounted) {
+                        if (startFocusNode.hasFocus) {
+                          setState(() {
+                            startPosition = details.result;
+                            depart.text = details.result!.name!;
+                            predictions = [];
+                          });
+                        } else {
+                          setState(() {
+                            endPosition = details.result;
+                            destination.text = details.result!.name!;
+                            predictions = [];
+                          });
+                        }
+
+                        if (startPosition != null && endPosition != null) {
+                          Navigator.of(context).push(MaterialPageRoute(
+                              builder: (BuildContext context) =>
+                                  const MapScreen()));
+                        }
+                      }
+                    },
+                  );
+                })
+          ],
+        ),
       ),
     );
   }
-  /*
-   void getPlace(String placesPosition) async {
-      if (placesPosition.length > 1) {
-        String stringUrl =
-            " https://maps.googleapis.com/maps/api/place/autocomplete/json?input=$placesPosition&key=AIzaSyDNxhlq0YoADTxZ3Be_iMtd_3zWUPe_mpo&sessiontoken=1234567890&components=contry:mr";
-
-        var res = await RequestAssistant.getRequests(s);
-        if (res == "failed") {
-          return;
-        }
-      }
-    }
-  */
 }

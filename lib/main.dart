@@ -30,7 +30,7 @@ void main() async {
   );
 }
 
-// Using last version avec nulSafety
+// Using last version with nulSafety
 class MyApp extends StatefulWidget {
   final Widget? child;
 

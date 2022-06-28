@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:uber_clone/Pages/accueil.dart';
-import 'package:uber_clone/Pages/note.dart';
 import 'package:uber_clone/Pages/paiement.dart';
 import 'package:uber_clone/Pages/profile.dart';
+import 'package:uber_clone/Pages/note.dart';
 
 class MainScreen extends StatefulWidget {
   const MainScreen({Key? key}) : super(key: key);
