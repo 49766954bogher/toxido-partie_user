@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:uber_clone/Pages/accueil.dart';
-import 'package:uber_clone/Pages/paiement.dart';
 import 'package:uber_clone/Pages/profile.dart';
 import 'package:uber_clone/Pages/note.dart';
 
@@ -35,7 +34,7 @@ class _MainScreenState extends State<MainScreen>
       body: TabBarView(
         physics: const NeverScrollableScrollPhysics(),
         controller: tabController,
-        children: const [HomePage(), PaiementPage(), NotePage(), ProfilePage()],
+        children: const [HomePage(), NotePage(), ProfilePage()],
       ),
       bottomNavigationBar: BottomNavigationBar(
         items: const [

@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:uber_clone/Pages/accueil.dart';
-import 'package:uber_clone/Pages/reglage.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({Key? key}) : super(key: key);
@@ -22,14 +21,6 @@ class ProfilePage extends StatelessWidget {
                 builder: (BuildContext context) => const HomePage()));
           },
         ),
-        actions: [
-          IconButton(
-              icon: const Icon(Icons.settings, color: Colors.white),
-              onPressed: () {
-                Navigator.of(context).push(MaterialPageRoute(
-                    builder: (BuildContext context) => const PageReglage()));
-              }),
-        ],
       ),
       body: Container(
         padding: const EdgeInsets.only(left: 16, top: 25, right: 16),
@@ -40,7 +31,7 @@ class ProfilePage extends StatelessWidget {
           child: ListView(
             children: [
               const Text(
-                "Modifier le Profile",
+                "Profile",
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.w500),
               ),
               const SizedBox(

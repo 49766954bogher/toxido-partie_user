@@ -5,15 +5,15 @@ import 'package:geolocator/geolocator.dart';
 import 'package:uber_clone/Chercher/chercher.dart';
 import 'package:uber_clone/Connection/connection.dart';
 import 'package:uber_clone/Pages/note.dart';
-import 'package:uber_clone/Pages/paiement.dart';
+
 import 'package:uber_clone/Pages/profile.dart';
-import 'package:uber_clone/Pages/reglage.dart';
 import 'dart:async';
 
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../Global/global.dart';
-import 'obtenirchauffeur.dart';
+
+import 'aller.dart';
 import 'history.dart';
 
 class HomePage extends StatefulWidget {
@@ -95,6 +95,7 @@ class _HomePageState extends State<HomePage> {
             top: 35,
             left: 20,
             child: FloatingActionButton(
+              heroTag: "menu",
               onPressed: () {
                 scafoldkey.currentState?.openDrawer();
               },
@@ -110,6 +111,7 @@ class _HomePageState extends State<HomePage> {
             top: 95,
             left: 20,
             child: FloatingActionButton(
+              heroTag: 'location',
               onPressed: () {
                 getPositionLocation();
               },
@@ -154,7 +156,7 @@ class _HomePageState extends State<HomePage> {
                       style: TextStyle(fontSize: 15.0),
                     ),
                     const Text(
-                      "Ou vouder-vous aller?",
+                      "Chercher un lieu!",
                       style: TextStyle(
                           fontSize: 20.0, fontWeight: FontWeight.bold),
                     ),
@@ -165,7 +167,7 @@ class _HomePageState extends State<HomePage> {
                       onTap: () {
                         Navigator.of(context).push(MaterialPageRoute(
                             builder: (BuildContext context) =>
-                                const ChercherPage()));
+                                const PrendreCourse()));
                       },
                       child: Container(
                         decoration: BoxDecoration(
@@ -303,21 +305,22 @@ class NavigationDrawer extends StatelessWidget {
           runSpacing: 16,
           children: [
             ListTile(
-                leading: const Icon(Icons.home),
-                title: const Text("Accueil"),
+                leading: const Icon(Icons.person),
+                title: const Text("Profile"),
                 onTap: () {
                   //Navigator.pop(context);
                   Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const HomePage()));
+                      builder: (context) => const ProfilePage()));
                 }),
             ListTile(
-                leading: const Icon(Icons.credit_card_outlined),
-                title: const Text("Paiement"),
-                onTap: () {
-                  //Navigator.pop(context);
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const PaiementPage()));
-                }),
+              leading: const Icon(Icons.car_repair),
+              title: const Text("Prendre course"),
+              onTap: () {
+                //Navigator.pop(context);
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const PrendreCourse()));
+              },
+            ),
             ListTile(
                 leading: const Icon(Icons.star),
                 title: const Text("Note"),
@@ -325,33 +328,9 @@ class NavigationDrawer extends StatelessWidget {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const NotePage()));
                 }),
-            ListTile(
-                leading: const Icon(Icons.star),
-                title: const Text("choix "),
-                onTap: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => const ontenirChauffuer()));
-                }),
-            ListTile(
-                leading: const Icon(Icons.person),
-                title: const Text("Compte"),
-                onTap: () {
-                  //Navigator.pop(context);
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const ProfilePage()));
-                }),
             const Divider(
               color: Colors.black54,
               thickness: 1.0,
-            ),
-            ListTile(
-              leading: const Icon(Icons.settings),
-              title: const Text("Reglage"),
-              onTap: () {
-                //Navigator.pop(context);
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const PageReglage()));
-              },
             ),
             ListTile(
               leading: const Icon(Icons.history),
@@ -403,7 +382,8 @@ class NavigationDrawer extends StatelessWidget {
                   "Utilisateur",
                   style: TextStyle(color: Colors.black54),
                 ),
-                Text('brms@gmail.com', style: TextStyle(color: Colors.black)),
+                Text('ibrahima@gmail.com',
+                    style: TextStyle(color: Colors.black)),
               ],
             ),
           ),

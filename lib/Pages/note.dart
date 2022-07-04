@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
 import 'package:rating_dialog/rating_dialog.dart';
 import 'package:rating_dialog/rating_dialog.dart';
-import 'package:smooth_star_rating/smooth_star_rating.dart';
 
 class NotePage extends StatefulWidget {
   const NotePage({Key? key}) : super(key: key);

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_place/google_place.dart';
 
 import '../Maps/maps.dart';
@@ -147,49 +148,6 @@ class _ChercherPageState extends State<ChercherPage> {
                 });
               },
             ),
-            ListView.builder(
-                shrinkWrap: true,
-                itemCount: predictions.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: const CircleAvatar(
-                      child: Icon(
-                        Icons.pin_drop,
-                        color: Colors.white,
-                      ),
-                    ),
-                    title: Text(
-                      predictions[index].description.toString(),
-                    ),
-                    onTap: () async {
-                      final placeId = predictions[index].placeId!;
-                      final details = await googlePlace.details.get(placeId);
-                      if (details != null &&
-                          details.result != null &&
-                          mounted) {
-                        if (startFocusNode.hasFocus) {
-                          setState(() {
-                            startPosition = details.result;
-                            depart.text = details.result!.name!;
-                            predictions = [];
-                          });
-                        } else {
-                          setState(() {
-                            endPosition = details.result;
-                            destination.text = details.result!.name!;
-                            predictions = [];
-                          });
-                        }
-
-                        if (startPosition != null && endPosition != null) {
-                          Navigator.of(context).push(MaterialPageRoute(
-                              builder: (BuildContext context) =>
-                                  const MapScreen()));
-                        }
-                      }
-                    },
-                  );
-                })
           ],
         ),
       ),
