@@ -2,7 +2,6 @@ import 'dart:collection';
 
 import 'package:flutter/material.dart';
 import 'package:geolocator/geolocator.dart';
-import 'package:uber_clone/Chercher/chercher.dart';
 import 'package:uber_clone/Connection/connection.dart';
 import 'package:uber_clone/Pages/note.dart';
 
@@ -287,13 +286,22 @@ class NavigationDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: SingleChildScrollView(
-        child: Column(
-          children: <Widget>[
-            buildHeader(context),
-            buildMenuItems(context),
-          ],
-        ),
+      child: ListView(
+        children: <Widget>[
+          const UserAccountsDrawerHeader(
+            accountName: Text(
+              "Ibrahima diallo",
+              style: TextStyle(fontWeight: FontWeight.bold, fontSize: 10),
+            ),
+            accountEmail: Text("ibrahima@gmail.com"),
+            currentAccountPicture: CircleAvatar(
+              backgroundImage: AssetImage("images/diallo.jpg"),
+            ),
+            decoration: BoxDecoration(color: Colors.black54),
+          ),
+          //buildHeader(context),
+          buildMenuItems(context),
+        ],
       ),
     );
   }
@@ -309,18 +317,9 @@ class NavigationDrawer extends StatelessWidget {
                 title: const Text("Profile"),
                 onTap: () {
                   //Navigator.pop(context);
-                  Navigator.of(context).pushReplacement(MaterialPageRoute(
-                      builder: (context) => const ProfilePage()));
+                  Navigator.of(context).pushReplacement(
+                      MaterialPageRoute(builder: (context) => ProfilePage()));
                 }),
-            ListTile(
-              leading: const Icon(Icons.car_repair),
-              title: const Text("Prendre course"),
-              onTap: () {
-                //Navigator.pop(context);
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const PrendreCourse()));
-              },
-            ),
             ListTile(
                 leading: const Icon(Icons.star),
                 title: const Text("Note"),
@@ -328,6 +327,15 @@ class NavigationDrawer extends StatelessWidget {
                   Navigator.of(context).push(MaterialPageRoute(
                       builder: (context) => const NotePage()));
                 }),
+            ListTile(
+              leading: const Icon(Icons.car_repair),
+              title: const Text("Demander une course"),
+              onTap: () {
+                //Navigator.pop(context);
+                Navigator.of(context).pushReplacement(MaterialPageRoute(
+                    builder: (context) => const PrendreCourse()));
+              },
+            ),
             const Divider(
               color: Colors.black54,
               thickness: 1.0,
@@ -363,7 +371,7 @@ class NavigationDrawer extends StatelessWidget {
           child: GestureDetector(
             onTap: () {
               Navigator.of(context).push(MaterialPageRoute(
-                  builder: (BuildContext context) => const ProfilePage()));
+                  builder: (BuildContext context) => ProfilePage()));
             },
             child: Column(
               children: const [
@@ -373,7 +381,7 @@ class NavigationDrawer extends StatelessWidget {
                   child: CircleAvatar(
                     radius: 78,
                     backgroundImage: AssetImage(
-                      "images/brms.jpg",
+                      "images/diallo.jpg",
                     ),
                   ),
                 ),
@@ -389,4 +397,21 @@ class NavigationDrawer extends StatelessWidget {
           ),
         ),
       );
+}
+
+Widget build(BuildContext context) {
+  var status;
+  return Column(
+    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+    children: <Widget>[
+      const Text("theme"),
+      const SizedBox(
+        height: 12.0,
+      ),
+      Text(
+        'Value : $status',
+        style: const TextStyle(color: Colors.black, fontSize: 20.0),
+      ),
+    ],
+  );
 }

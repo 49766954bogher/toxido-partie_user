@@ -1,10 +1,7 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:uber_clone/Connection/connection.dart';
-import 'package:animated_splash_screen/animated_splash_screen.dart';
 
-import 'package:uber_clone/Pages/accueil.dart';
+import 'EcranDemarage/splash_screen.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -13,17 +10,11 @@ void main() async {
   runApp(
     MyApp(
       child: MaterialApp(
-        title: "Taxi service version utilisateur",
+        title: "Taxi Service pour utilisateur",
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: AnimatedSplashScreen(
-            backgroundColor: Colors.white,
-            splash: 'images/logo.png',
-            splashIconSize: 200,
-            nextScreen: FirebaseAuth.instance.currentUser == null
-                ? const Connection()
-                : const HomePage()),
+        home: const MySplashScreen(),
         debugShowCheckedModeBanner: false,
       ),
     ),

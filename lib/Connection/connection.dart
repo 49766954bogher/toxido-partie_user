@@ -16,6 +16,8 @@ class Connection extends StatefulWidget {
 class _ConnectionState extends State<Connection> {
   TextEditingController email = TextEditingController();
   TextEditingController password = TextEditingController();
+  bool showPassword = true;
+  bool estPassword = true;
 
   validationForm() {
     if (email.text.contains("@")) {
@@ -68,7 +70,9 @@ class _ConnectionState extends State<Connection> {
           child: Column(
             children: [
               const Image(
-                  image: AssetImage("images/logo.png"),
+                  image: AssetImage(
+                    "images/logo.png",
+                  ),
                   height: 300,
                   width: 250,
                   alignment: Alignment.center),
@@ -76,6 +80,7 @@ class _ConnectionState extends State<Connection> {
               const Text(
                 "Se connecter",
                 style: TextStyle(
+                    fontFamily: 'bolt-regular',
                     fontSize: 0,
                     color: Colors.black,
                     fontStyle: FontStyle.italic,
@@ -93,6 +98,10 @@ class _ConnectionState extends State<Connection> {
                     decoration: const InputDecoration(
                         labelText: "Email utilisatueur",
                         hintText: "email utilisatueur",
+                        prefixIcon: Padding(
+                          padding: EdgeInsets.all(16.0),
+                          child: Icon(Icons.person),
+                        ),
                         enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey)),
                         hintStyle: TextStyle(
@@ -108,7 +117,7 @@ class _ConnectionState extends State<Connection> {
                   TextField(
                     keyboardType: TextInputType.visiblePassword,
                     obscuringCharacter: "*",
-                    obscureText: true,
+                    obscureText: estPassword ? showPassword : false,
                     controller: password,
                     style: const TextStyle(
                       color: Colors.grey,
@@ -116,6 +125,10 @@ class _ConnectionState extends State<Connection> {
                     decoration: const InputDecoration(
                         labelText: "Mot de passe ",
                         hintText: "mot de passe",
+                        prefixIcon: Padding(
+                          padding: const EdgeInsets.all(16.0),
+                          child: Icon(Icons.lock),
+                        ),
                         enabledBorder: UnderlineInputBorder(
                             borderSide: BorderSide(color: Colors.grey)),
                         hintStyle: TextStyle(

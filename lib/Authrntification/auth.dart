@@ -83,117 +83,142 @@ class _SignUpState extends State<SignUp> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
-        child: Column(children: [
-          const Image(
-              image: AssetImage(
-                "images/logo.png",
-              ),
-              height: 270,
-              width: 250,
-              alignment: Alignment.center),
-          Padding(
-            padding: const EdgeInsets.all(3.0),
-            child: Column(children: [
-              TextField(
-                keyboardType: TextInputType.name,
-                controller: name,
-                style: const TextStyle(
-                  color: Colors.grey,
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Image(
+                image: AssetImage(
+                  "images/logo.png",
                 ),
-                decoration: const InputDecoration(
-                    labelText: "Nom",
-                    hintText: "Nom",
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey)),
-                    hintStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
-                    labelStyle: TextStyle(color: Colors.grey, fontSize: 18)),
-              ),
-              TextField(
-                controller: email,
-                keyboardType: TextInputType.emailAddress,
-                style: const TextStyle(
-                  color: Colors.grey,
-                ),
-                decoration: const InputDecoration(
-                    labelText: "Email",
-                    hintText: "email",
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey)),
-                    hintStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
-                    labelStyle: TextStyle(color: Colors.grey, fontSize: 18)),
-              ),
-              TextField(
-                keyboardType: TextInputType.phone,
-                controller: phone,
-                style: const TextStyle(
-                  color: Colors.grey,
-                ),
-                decoration: const InputDecoration(
-                    labelText: "Telephone",
-                    hintText: "telephone",
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey)),
-                    hintStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
-                    labelStyle: TextStyle(color: Colors.grey, fontSize: 18)),
-              ),
-              TextField(
-                keyboardType: TextInputType.visiblePassword,
-                controller: password,
-                obscureText: true,
-                obscuringCharacter: "*",
-                style: const TextStyle(
-                  color: Colors.grey,
-                ),
-                decoration: const InputDecoration(
-                    labelText: "Mot de passe",
-                    hintText: "mot de passe",
-                    enabledBorder: UnderlineInputBorder(
-                        borderSide: BorderSide(color: Colors.grey)),
-                    hintStyle: TextStyle(
-                      color: Colors.grey,
-                      fontSize: 16,
-                    ),
-                    labelStyle: TextStyle(color: Colors.grey, fontSize: 18)),
-              ),
-              const SizedBox(height: 10.0),
-              ElevatedButton(
-                onPressed: () {
-                  validationForm();
-                  sauvegarderInfosChauffeur();
-                  Fluttertoast.showToast(msg: "Compte bien crée");
-                },
-                style: ElevatedButton.styleFrom(
-                  primary: Colors.yellow,
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(24.0),
+                height: 270,
+                width: 250,
+                alignment: Alignment.center),
+            Padding(
+              padding: const EdgeInsets.all(3.0),
+              child: Column(children: [
+                TextField(
+                  keyboardType: TextInputType.name,
+                  textInputAction: TextInputAction.next,
+                  controller: name,
+                  style: const TextStyle(
+                    color: Colors.grey,
                   ),
+                  decoration: InputDecoration(
+                      labelText: "Nom",
+                      hintText: "Nom",
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                          color: Colors.yellow,
+                          width: 3.0,
+                        ),
+                      ),
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                      ),
+                      labelStyle: TextStyle(color: Colors.grey, fontSize: 18)),
                 ),
-                child: Container(
-                  height: 50.0,
-                  child: const Center(
-                    child: Text(
-                      "S'inscrire",
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontFamily: "",
-                        color: Colors.black54,
+                TextFormField(
+                  controller: email,
+                  keyboardType: TextInputType.emailAddress,
+                  textInputAction: TextInputAction.next,
+                  style: const TextStyle(
+                    color: Colors.grey,
+                  ),
+                  decoration: InputDecoration(
+                      labelText: "Email",
+                      hintText: "email",
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                          color: Colors.yellow,
+                          width: 3.0,
+                        ),
+                      ),
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                      ),
+                      labelStyle: TextStyle(color: Colors.grey, fontSize: 18)),
+                ),
+                TextFormField(
+                  keyboardType: TextInputType.phone,
+                  textInputAction: TextInputAction.next,
+                  controller: phone,
+                  style: const TextStyle(
+                    color: Colors.grey,
+                  ),
+                  decoration: InputDecoration(
+                      labelText: "Telephone",
+                      hintText: "telephone",
+                      enabledBorder: OutlineInputBorder(
+                        borderRadius: BorderRadius.circular(20),
+                        borderSide: const BorderSide(
+                          color: Colors.yellow,
+                          width: 3.0,
+                        ),
+                      ),
+                      hintStyle: const TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                      ),
+                      labelStyle:
+                          const TextStyle(color: Colors.grey, fontSize: 18)),
+                ),
+                TextField(
+                  keyboardType: TextInputType.visiblePassword,
+                  textInputAction: TextInputAction.done,
+                  controller: password,
+                  obscureText: true,
+                  obscuringCharacter: "*",
+                  style: const TextStyle(
+                    color: Colors.grey,
+                  ),
+                  decoration: const InputDecoration(
+                      labelText: "Mot de passe",
+                      hintText: "mot de passe",
+                      enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(color: Colors.grey)),
+                      hintStyle: TextStyle(
+                        color: Colors.grey,
+                        fontSize: 16,
+                      ),
+                      labelStyle: TextStyle(color: Colors.grey, fontSize: 18)),
+                ),
+                const SizedBox(height: 10.0),
+                ElevatedButton(
+                  onPressed: () {
+                    validationForm();
+                    sauvegarderInfosChauffeur();
+                    Fluttertoast.showToast(msg: "Compte bien crée");
+                  },
+                  /*
+                  style: ElevatedButton.styleFrom(
+                    primary: Colors.yellow,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(24.0),
+                    ),
+                  ),
+                  */
+                  child: Container(
+                    width: MediaQuery.of(context).size.width,
+                    color: Colors.yellowAccent,
+                    child: const Center(
+                      child: Text(
+                        "S'inscrire",
+                        style: TextStyle(
+                          fontFamily: 'bolt-regular',
+                          fontSize: 18,
+                          color: Colors.black54,
+                        ),
                       ),
                     ),
                   ),
                 ),
-              ),
-            ]),
-          ),
-          TextButton(
+              ]),
+            ),
+            TextButton(
               onPressed: () {
                 Navigator.push(context,
                     MaterialPageRoute(builder: (c) => const Connection()));
@@ -203,8 +228,10 @@ class _SignUpState extends State<SignUp> {
                     style: TextStyle(
                       color: Colors.grey,
                     )),
-              )),
-        ]),
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }
