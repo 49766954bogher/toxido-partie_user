@@ -286,6 +286,7 @@ class NavigationDrawer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
+      backgroundColor: Colors.black54,
       child: ListView(
         children: <Widget>[
           const UserAccountsDrawerHeader(
@@ -295,9 +296,14 @@ class NavigationDrawer extends StatelessWidget {
             ),
             accountEmail: Text("ibrahima@gmail.com"),
             currentAccountPicture: CircleAvatar(
-              backgroundImage: AssetImage("images/diallo.jpg"),
+              backgroundImage: AssetImage(
+                "images/diallo.jpg",
+              ),
             ),
-            decoration: BoxDecoration(color: Colors.black54),
+            decoration: BoxDecoration(
+              //fit: BoxFit.cover,
+              color: Colors.black54,
+            ),
           ),
           //buildHeader(context),
           buildMenuItems(context),
@@ -307,7 +313,6 @@ class NavigationDrawer extends StatelessWidget {
   }
 
   Widget buildMenuItems(BuildContext context) => Container(
-        color: Colors.white,
         padding: const EdgeInsets.all(24),
         child: Wrap(
           runSpacing: 16,

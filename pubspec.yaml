@@ -150,6 +150,13 @@ flutter:
           - asset: fonts/bolt-regular.ttf
             weight: 700
 
+      
+       
+      - family: Corben     
+        fonts:
+          - asset: fonts/Corben-Bold.ttf
+            weight: 700
+
           
      
     #  style: italic
