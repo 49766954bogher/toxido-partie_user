@@ -350,8 +350,8 @@ class NavigationDrawer extends StatelessWidget {
               title: const Text("Historique"),
               onTap: () {
                 //Navigator.pop(context);
-                Navigator.of(context).pushReplacement(MaterialPageRoute(
-                    builder: (context) => const HistoryPage()));
+                Navigator.of(context).pushReplacement(
+                    MaterialPageRoute(builder: (context) => HistoryPage()));
               },
             ),
             ListTile(

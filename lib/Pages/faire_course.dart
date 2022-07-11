@@ -25,24 +25,22 @@ class _FaireCourseState extends State<FaireCourse>
     const ListePassagers(
         //Chouaib
 
-        nom: 'Chouaib',
-        email: 'chouaib@gmail.com',
+        nom: 'Ibrahima',
+        email: 'ibrahidiallo300@gmail.com',
         destination: 'arafat',
         depart: '24'),
 
     const ListePassagers(
         //Mimi
-
-        nom: 'Mimi',
-        email: 'Mimi@gmail.com',
+        nom: 'Ibrahima',
+        email: 'ibrahidiallo300@gmail.com',
         destination: 'madrid',
         depart: 'fst'),
 
     const ListePassagers(
         //salma
-
-        nom: 'Salma',
-        email: 'slma@gmail.com',
+        nom: 'Ibrahima',
+        email: 'ibrahidiallo300@gmail.com',
         destination: 'pk',
         depart: 'arafat'),
   ];
@@ -89,6 +87,7 @@ class _FaireCourseState extends State<FaireCourse>
             child: ListTile(
               leading: CircleAvatar(
                 backgroundColor: Colors.yellowAccent,
+                radius: 25,
                 child: Text(
                   client.nom[0],
                   style: const TextStyle(
@@ -96,21 +95,13 @@ class _FaireCourseState extends State<FaireCourse>
                     color: Colors.black,
                   ),
                 ),
-                radius: 25,
               ),
               title: Text(client.nom),
-              subtitle: Text(client.email),
-              trailing: DropdownButton(
-                  value: dropdownvalue,
-                  icon: const Icon(Icons.keyboard_arrow_down),
-                  items: items.map((items) {
-                    return DropdownMenuItem(value: items, child: Text(items));
-                  }).toList(),
-                  onChanged: (String? newValue) {
-                    setState(() {
-                      dropdownvalue = newValue;
-                    });
-                  }),
+              subtitle: Text(client.depart, semanticsLabel: client.destination),
+              trailing: const Icon(
+                Icons.star_outline,
+                color: Colors.white,
+              ),
             ),
           );
         }),
@@ -131,7 +122,3 @@ class ListePassagers {
       required this.destination,
       required this.depart});
 }
-
-String? dropdownvalue = 'Accepter';
-
-var items = ['Accepter', 'Refuser'];

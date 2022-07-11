@@ -140,7 +140,8 @@ class _SignUpState extends State<SignUp> {
                         color: Colors.grey,
                         fontSize: 16,
                       ),
-                      labelStyle: TextStyle(color: Colors.grey, fontSize: 18)),
+                      labelStyle:
+                          const TextStyle(color: Colors.grey, fontSize: 18)),
                 ),
                 TextFormField(
                   keyboardType: TextInputType.phone,

@@ -1,6 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_rating_bar/flutter_rating_bar.dart';
-import 'package:google_maps/google_maps.dart';
 import 'package:rate_my_app/rate_my_app.dart';
 import 'package:uber_clone/Pages/history.dart';
 
@@ -76,7 +74,7 @@ class _NotePageState extends State<NotePage> {
           ),
           onPressed: () {
             Navigator.of(context).push(MaterialPageRoute(
-                builder: (BuildContext context) => const HistoryPage()));
+                builder: (BuildContext context) => HistoryPage()));
           },
         ),
       ),
