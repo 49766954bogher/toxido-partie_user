@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:google_maps/google_maps.dart';
 import 'package:rate_my_app/rate_my_app.dart';
+import 'package:uber_clone/Pages/history.dart';
 
 class NotePage extends StatefulWidget {
   const NotePage({Key? key}) : super(key: key);
@@ -63,10 +65,21 @@ class _NotePageState extends State<NotePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Colors.black45,
-          title: const Text(
-            "Noter votre voyage",
-          )),
+        backgroundColor: Colors.black45,
+        title: const Text(
+          "Notes",
+        ),
+        leading: IconButton(
+          icon: const Icon(
+            Icons.arrow_back,
+            color: Colors.white,
+          ),
+          onPressed: () {
+            Navigator.of(context).push(MaterialPageRoute(
+                builder: (BuildContext context) => const HistoryPage()));
+          },
+        ),
+      ),
       body: Center(),
     );
   }
